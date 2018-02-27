@@ -19,12 +19,12 @@ test_requirements = [
 
 setup(
     name='pythainlp',
-    version='1.6.0',
+    version='1.6.0.2',
     description="Thai natural language processing in Python package.",
     long_description=readme,
     author='PyThaiNLP',
-    author_email='wannaphong@yahoo.com',
-    url='https://sites.google.com/view/pythainlp/',
+    author_email='wannaphong@kkumail.com',
+    url='https://github.com/PyThaiNLP/pythainlp',
     packages=find_packages(),
     test_suite='pythainlp.test',
     package_data={'pythainlp.corpus':['stopwords-th.txt','thaipos.json','thaiword.txt','corpus_license.md','tha-wn.db','new-thaidict.txt','negation.txt','provinces.csv'],'pythainlp.sentiment':['vocabulary.data','sentiment.data']},
