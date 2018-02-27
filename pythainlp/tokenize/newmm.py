@@ -73,16 +73,6 @@ def tcc_pos(text):
         p_set.add(p)
     return p_set
 
-
-def serialize(words_at, p, p2):
-    # find path ทั้งหมด แบบ depth first
-    for w in words_at[p]:
-        p_ = p + len(w)
-        if p_ == p2:
-            yield [w]
-        elif p_ < p2:
-            for path in serialize(words_at, p_, p2):
-                yield [w] + path
 def bfs_paths_graph(graph, start, goal):
   queue = [(start, [start])]
   while queue:
@@ -93,10 +83,12 @@ def bfs_paths_graph(graph, start, goal):
       else:
         queue.append((next, path+[next]))
 
-def onecut(text, data=['']):
-  if(data != ['']):
-      trie = Trie(data)
-  else:
+def onecut(text, trie=None):
+#   if(data != ['']):
+#       trie = Trie(data)
+#   else:
+#       trie = THAI_WORDS
+  if not trie:
       trie = THAI_WORDS
   graph = defaultdict(list)  # main data structure
   allow_pos = tcc_pos(text)     # ตำแหน่งที่ตัด ต้องตรงกับ tcc
@@ -145,5 +137,5 @@ def onecut(text, data=['']):
 # ช่วยให้ไม่ต้องพิมพ์ยาวๆ
 
 
-def mmcut(text, data=['']):
-    return list(onecut(text, data=data))
+def mmcut(text, data=None):
+    return list(onecut(text, trie=data))
