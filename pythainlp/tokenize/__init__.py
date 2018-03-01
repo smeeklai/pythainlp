@@ -14,13 +14,18 @@ class Tokenizer:
 		Initialize tokenizer object
 		
 		Keyword arguments:
-		custom_dict -- a list of vocaburaies to be used to create a trie (default - original lexitron)
+		custom_dict -- a file path or a list of vocaburaies to be used to create a trie (default - original lexitron)
 
 		Object variables:
 		trie_dict -- a trie to use in tokenizing engines
 		"""
 		if custom_dict:
-			self.trie_dict = Trie(custom_dict)
+			if type(custom_dict) is list:
+				self.trie_dict = Trie(custom_dict)
+			elif type(custom_dict) is str:
+				with codecs.open(custom_dict, 'r',encoding='utf8') as f:
+					vocabs = [word.rstrip() for word in f.readlines()]
+				self.trie_dict = Trie(vocabs)
 		else:
 			self.trie_dict = Trie(get_dict())
 	
